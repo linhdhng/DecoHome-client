@@ -8,12 +8,12 @@ function CreateProduct() {
   const [category, setCategory] = useState([]);
   const [price, setPrice] = useState([]);
   const [material, setMaterial] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/products", {
+      .post("https://decohome-server-1.onrender.com/api/products", {
         title,
         description,
         category,
@@ -22,7 +22,7 @@ function CreateProduct() {
       })
       .then((res) => {
         console.log(res);
-        navigate("/admin")
+        navigate("/admin");
       })
       .catch((err) => console.log(err));
   };

@@ -17,7 +17,9 @@ function AdminControl() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/products");
+      const response = await axios.get(
+        "https://decohome-server-1.onrender.com/api/products"
+      );
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -36,7 +38,7 @@ function AdminControl() {
     try {
       // Make Axios PUT request to update item data
       await axios.put(
-        `http://localhost:5000/api/products/${formData._id}`,
+        `https://decohome-server-1.onrender.com/api/products/${formData._id}`,
         formData
       );
       // Once updated, fetch updated data and close the edit form
@@ -50,7 +52,7 @@ function AdminControl() {
   const handleDelete = async (index) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/products/${data[index]._id}`
+        `https://decohome-server-1.onrender.com/api/products/${data[index]._id}`
       );
       console.log("Item deleted successfully");
       fetchData();
@@ -86,12 +88,14 @@ function AdminControl() {
                   <td>{prod.category}</td>
                   <td>{prod.price}</td>
                   <td>
-                    <Link to="/create" className=" btn btn-success btn-m"><MdOutlineAdd/></Link>
+                    <Link to="/create" className=" btn btn-success btn-m">
+                      <MdOutlineAdd />
+                    </Link>
                     <Button
                       className="button-box"
                       onClick={() => handleEdit(index)}
                     >
-                      <FaEdit/>
+                      <FaEdit />
                     </Button>
                     <Button
                       className="button-box"
@@ -110,7 +114,7 @@ function AdminControl() {
 
       {editIndex !== null && (
         <EditForm
-        data={data[editIndex]}
+          data={data[editIndex]}
           onClose={handleCloseEdit}
           onSubmit={handleSubmitEdit}
         />
